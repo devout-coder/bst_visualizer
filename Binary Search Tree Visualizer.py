@@ -1,22 +1,16 @@
                                 # BINARY SEARCH TREE VISUALIZER #
+                                # BINARY SEARCH TREE VISUALIZER #
 from tkinter import *
 from tkinter import messagebox
 import time
-import Circular_queue as CQ # Please give the right path here of Circular_queue.py
+import stuff.Circular_queue as CQ # Please give the right path here of Circular_queue.py
 
-# 4 level only allowed for this application
-# node[5] similar to node.left and node[6] similar to node.right
-# Notation index---> Here I used it...to make the clear sense about the right position of the node
-# on the canvas...just like notation index--------------------------------->
-# root node = 0, left child of root node = 1, right child of root node = 2 and so on
-# level wise increment of notation index from left to right in each level
-# In special case of delete a node--->left none right exist will same as delete a node having both child
 
 class BST:
     def __init__(self, root):
         self.window = root
         # Canvas make for node presentation
-        self.make_canvas = Canvas(self.window,width=1160,height=520,bg="chocolate",relief=RAISED,bd=8)
+        self.make_canvas = Canvas(self.window,width=1160,height=520,bg="purple",relief=RAISED,bd=8)
         self.make_canvas.place(x=0,y=0)
         # Canvas make for result presentation
         self.result_canvas = Canvas(self.window,width=1340,height=168,bg="#FF8C00",relief=RAISED,bd=4)
@@ -63,15 +57,15 @@ class BST:
         self.make_container_in_result_canvas()
 
     def heading_root_and_null_make(self):# By default window presentation
-        make_heading = Label(self.make_canvas,text="Binary Search Tree Visualizer",font=("Arial",27,"bold","italic"),fg="yellow",bg="chocolate")
+        make_heading = Label(self.make_canvas,text="Binary Search Tree Visualizer",font=("Arial",27,"bold","italic"),fg="yellow",bg="purple")
         make_heading.place(x=350,y=10)
-        make_root = Label(self.make_canvas,text="Root",font=("Arial",17,"bold"),fg="brown",bg="chocolate")
+        make_root = Label(self.make_canvas,text="Root",font=("Arial",17,"bold"),fg="red",bg="purple")
         make_root.place(x=565,y=10+50)
 
         root_indicator = (595,80+50, 595 - 15,(80 + 43) / 2+50, 595 - 5,(80 + 43) / 2+50, 595 - 5,43+50, 595 + 5,43+50, 595 + 5,(80 + 43) / 2+50, 595 + 15, (80 + 43) / 2+50)
         self.make_canvas.create_polygon(root_indicator, width=3, fill="yellow", outline="black")
 
-        self.make_null = Label(self.make_canvas,text="NULL",font=("Arial",17,"bold","italic"),fg="#2E37FE",bg="chocolate")
+        self.make_null = Label(self.make_canvas,text="NULL",font=("Arial",17,"bold","italic"),fg="red",bg="purple")
         self.make_null.place(x=565,y=90+50)
 
     def make_instructional_buttons(self):# For make Instructional buttons
@@ -81,7 +75,7 @@ class BST:
         self.make_delete = Button(self.window, text="Delete", font=("Arial", 20, "bold"), bg="black", fg="#00FF00", relief=RAISED, bd=8, command=lambda: self.take_input_set_up(2), state=NORMAL)
         self.make_delete.place(x=1210,y=70)
 
-        make_label_frame_for_traversing = LabelFrame(self.window,text="Traversing",width=50,bg="orange",font=("Arial",13,"bold"),fg="green")
+        make_label_frame_for_traversing = LabelFrame(self.window,text="Traversing",width=50,bg="orange",font=("Arial",13,"bold"),fg="red")
         make_label_frame_for_traversing.place(x=1183,y=280)
 
         self.pre_order_traversal  = Button(make_label_frame_for_traversing,text="Pre-order",font=("Arial",15,"bold"),bg="black",fg="#00FF00",relief=RAISED,bd=8,command=lambda: self.traversing_decision_making(1),state=NORMAL)
@@ -93,17 +87,10 @@ class BST:
         self.post_order_traversal = Button(make_label_frame_for_traversing, text="Post-order", font=("Arial", 15, "bold"), bg="black", fg="#00FF00", relief=RAISED, bd=8, command=lambda: self.traversing_decision_making(3), state=NORMAL)
         self.post_order_traversal.pack(padx=10, pady=5)
 
-        # self.level_order_traversal = Button(make_label_frame_for_traversing, text="Level-order Display", font=("Arial", 10, "bold"), bg="black", fg="#00FF00", relief=RAISED, bd=8, command=lambda: self.traversing_decision_making(4), state=NORMAL)
-        # self.level_order_traversal.pack(padx=3, pady=5)
-
-        # self.level_order_display = Button(make_label_frame_for_traversing, text="Level-order Concept",
-        #                                     font=("Arial", 10, "bold"), bg="black", fg="#00FF00", relief=RAISED, bd=8,
-        #                                     command=self.level_order_concept_by_queue, state=NORMAL)
-        # self.level_order_display.pack(padx=3, pady=5)
 
     def take_input_set_up(self,indicator):# Set up for take input value for node insert and delete
         self.input_btn_deactivation()
-        self.take_input = Label(self.window, text="Enter the number to input", fg="blue", bg="orange", font=("Arial", 10, "bold"))
+        self.take_input = Label(self.window, text="Enter the number to input", fg="red", bg="orange", font=("Arial", 10, "bold"))
         self.take_input.place(x=1180, y=150)
         self.take_entry = Entry(self.window, fg="blue", bg="white", relief=SUNKEN, bd=6, width=5, font=("Arial", 10, "bold"))
         self.take_entry.place(x=1200, y=170)
@@ -146,9 +133,6 @@ class BST:
 
     def make_default_node_with_set_position(self):# For node make and set at right position in canvas
         try:
-            # self.status_note.config(text="Insertion Process")
-            # self.status_note.place(x=500, y=130)
-
             self.make_node = self.make_canvas.create_oval(505, 85+50, 555, 135+50, width=2, fill="green", outline="orange")
             self.make_label= Label(self.window, text=self.take_entry.get(), fg="yellow", bg="green", font=("Arial", 12, "bold"))
             self.make_label.place(x=self.label_position_x, y=self.label_position_y)
@@ -321,7 +305,7 @@ class BST:
         try:
             self.left_activate = 1
             self.right_activate = 0
-            make_greater_than_label = Label(self.window, text=">", fg="green", bg="chocolate", font=("Arial", 20, "bold"))
+            make_greater_than_label = Label(self.window, text=">", fg="red", bg="purple", font=("Arial", 20, "bold"))
             make_greater_than_label.place(x=self.label_position_x - 40, y=self.label_position_y - 10)
             self.window.update()
             time.sleep(1)
@@ -333,7 +317,7 @@ class BST:
         try:
             self.right_activate = 1
             self.left_activate = 0
-            make_less_than_label = Label(self.window, text="<", fg="green", bg="chocolate", font=("Arial", 20, "bold"))
+            make_less_than_label = Label(self.window, text="<", fg="red", bg="purple", font=("Arial", 20, "bold"))
             make_less_than_label.place(x=self.label_position_x - 40, y=self.label_position_y - 10)
             self.window.update()
             time.sleep(1)
@@ -395,18 +379,15 @@ class BST:
                     self.value_show[every_box_index].config(text=" ")
                 self.display_box_counter = -1
             if instruction == 1:
-                # self.status_note.config(text="Pre-Order Traversing")
-                # self.status_note.place(x=500, y=130)
+               
                 self.traversing_label['text'] = "Pre-Order Traversing Result"
                 self.pre_order_traversing(self.node_number_value_store[0])
             elif instruction == 2:
-                # self.status_note.config(text="In-Order Traversing")
-                # self.status_note.place(x=500, y=130)
+               
                 self.traversing_label['text'] = "In-Order Traversing Result"
                 self.in_order_traversing(self.node_number_value_store[0])
             elif instruction == 3:
-                # self.status_note.config(text="Post-Order Traversing")
-                # self.status_note.place(x=500, y=130)
+                
                 self.traversing_label['text'] = "Post-Order Traversing Result"
                 self.post_order_traversing(self.node_number_value_store[0])
 
@@ -460,86 +441,17 @@ class BST:
             time.sleep(0.8)
             self.window.update()
 
-    # def level_order_traversing(self):
-    #     self.temp_queue.append(self.node_number_value_store[0])
-    #     while len(self.temp_queue) > 0:
-    #             take = self.temp_queue.pop(0)
-    #             self.window.update()
-    #             time.sleep(0.8)
-    #             self.make_canvas.itemconfig(take[0], fill="orange", outline="black")
-    #             self.display_box_counter += 1
-    #             self.value_show[self.display_box_counter].config(text=take[2])
-    #             take[1].config(bg="orange", fg="green")
-    #             self.window.update()
-
-    #             if take[5] is not None:
-    #                 self.temp_queue.append(take[5])
-
-    #             if take[6] is not None:
-    #                 self.temp_queue.append(take[6])
 
     def make_container_in_result_canvas(self):# In down canvas
-        self.traversing_label = Label(self.result_canvas,bg="#FF8C00",fg="green",text="Traversing Result",font=("Arial",15,"bold","italic"))
+        self.traversing_label = Label(self.result_canvas,bg="#FF8C00",fg="red",text="Traversing Result",font=("Arial",15,"bold","italic"))
         self.traversing_label.place(x=480,y=10)
         distance_maintainer = 8
         for i in range(15):
             self.value_show.append(i)
-            self.value_show[i] = Label(self.result_canvas,bg="chocolate",fg="yellow",text=" ",width="4",height="1",font=("Arial",15,"bold","italic"),relief=SUNKEN,bd=5)
+            self.value_show[i] = Label(self.result_canvas,bg="purple",fg="black",text=" ",width="4",height="1",font=("Arial",15,"bold","italic"),relief=SUNKEN,bd=5)
             self.value_show[i].place(x= distance_maintainer,y=50)
             distance_maintainer+=91
 
-        # make_status = Label(self.result_canvas,bg="#FF8C00",fg="brown",text="Status",font=("Arial",17,"bold","italic"))
-        # make_status.place(x=580,y=100)
-
-        # self.status_note = Label(self.result_canvas,bg="#FF8C00",fg="blue",text="Play With BST",font=("Arial",20,"bold","italic"))
-        # self.status_note.place(x=530,y=130)
-
-    # def level_order_concept_by_queue(self):# With Circular Queue Concept
-    #     try:
-    #         top = Toplevel()
-    #         top.config(bg="orange")
-    #         top.geometry("1080x600")
-    #         top.maxsize(1080, 600)
-    #         top.minsize(1080, 600)
-    #         # top.iconbitmap("bst_icon.ico")
-    #         queue_obj = CQ.CircularQueue(top)
-    #         node_data_store_to_access_easily = []
-    #         node_data_store_to_access_easily.append(self.node_number_value_store[0])
-    #         queue_obj.box_insert(self.node_number_value_store[0][2])
-    #         i=-1
-
-    #         while True:
-    #             if  len(queue_obj.value_store) == 0:
-    #                 queue_obj.status_label['text'] = "All node value printed here and the queue is empty"
-    #                 break
-    #             else:
-    #                 take = node_data_store_to_access_easily.pop(0)
-    #                 top.update()
-    #                 time.sleep(2)
-
-    #                 if take[5] is not None:
-    #                    queue_obj.status_label['text'] = "The left child of the front pointing node is inserted"
-    #                    node_data_store_to_access_easily.append(take[5])
-    #                    queue_obj.box_insert(take[5][2])
-    #                    top.update()
-    #                    time.sleep(2)
-    #                 if take[6] is not None:
-    #                    queue_obj.status_label['text'] = "The right child of the front pointing node is inserted"
-    #                    node_data_store_to_access_easily.append(take[6])
-    #                    queue_obj.box_insert(take[6][2])
-    #                    top.update()
-    #                    time.sleep(2)
-
-    #                 queue_obj.status_label['text'] = "Front pointing node value printed here and get deleted from Queue"
-    #                 i += 1
-    #                 queue_obj.value_show[i].config(text=take[2])
-    #                 queue_obj.deletion()
-    #                 top.update()
-
-    #         top.mainloop()
-
-    #     except:
-    #         print("Some force stop error")
 
     def delete(self):# For node deletion
         val = self.take_entry.get()
@@ -846,3 +758,4 @@ if __name__ == '__main__':
     # window.iconbitmap("bst_icon.ico")
     BST(window)
     window.mainloop()
+
