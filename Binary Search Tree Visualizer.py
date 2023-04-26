@@ -59,7 +59,7 @@ class BST:
         make_heading.place(x=350,y=10)
         make_root = Label(self.make_canvas,text="Root",font=("Arial",17,"bold"),fg="brown",bg="white")
         make_root.place(x=565,y=10+50)
-
+                 
         root_indicator = (595,80+50, 595 - 15,(80 + 43) / 2+50, 595 - 5,(80 + 43) / 2+50, 595 - 5,43+50, 595 + 5,43+50, 595 + 5,(80 + 43) / 2+50, 595 + 15, (80 + 43) / 2+50)
         self.make_canvas.create_polygon(root_indicator, width=3, fill="yellow", outline="black")
 
@@ -397,10 +397,10 @@ class BST:
         if control_node is None:
             return
         else:
-            self.make_canvas.itemconfig(control_node[0],fill="green",outline="orange")
+            self.make_canvas.itemconfig(control_node[0],fill="black",outline="orange")
             self.display_box_counter += 1
             self.value_show[self.display_box_counter].config(text=control_node[2])
-            control_node[1].config(bg="green",fg="black")
+            control_node[1].config(bg="black",fg="white")
             self.window.update()
             time.sleep(0.8)
             self.window.update()
@@ -414,10 +414,10 @@ class BST:
         else:
             self.in_order_traversing(control_node[5])
 
-            self.make_canvas.itemconfig(control_node[0], fill="green", outline="orange")
+            self.make_canvas.itemconfig(control_node[0], fill="yellow", outline="orange")
             self.display_box_counter += 1
             self.value_show[self.display_box_counter].config(text=control_node[2])
-            control_node[1].config(bg="green", fg="blue")
+            control_node[1].config(bg="yellow", fg="black")
             self.window.update()
             time.sleep(0.8)
             self.window.update()
@@ -431,10 +431,10 @@ class BST:
             self.post_order_traversing(control_node[5])
             self.post_order_traversing(control_node[6])
 
-            self.make_canvas.itemconfig(control_node[0], fill="green", outline="orange")
+            self.make_canvas.itemconfig(control_node[0], fill="red", outline="orange")
             self.display_box_counter += 1
             self.value_show[self.display_box_counter].config(text=control_node[2])
-            control_node[1].config(bg="green", fg="orange")
+            control_node[1].config(bg="red", fg="white")
             self.window.update()
             time.sleep(0.8)
             self.window.update()
